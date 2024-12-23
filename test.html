@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>គេហទំព័េ</title>
+  <style>
+    /* Change face color on hover */
+    .face:hover {
+      fill: lightblue;
+    }
+
+    /* Style for the smile */
+    .smile {
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG Smiley Face</h1>
+
+  <!-- SVG Graphic -->
+  <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Face (Circle) -->
+    <circle class="face" cx="100" cy="100" r="80" fill="yellow" stroke="black" stroke-width="4" />
+    
+    <!-- Left Eye -->
+    <circle cx="70" cy="80" r="10" fill="black" />
+    
+    <!-- Right Eye -->
+    <circle cx="130" cy="80" r="10" fill="black" />
+    
+    <!-- Smile -->
+    <path d="M60 120 Q100 160 140 120" fill="none" stroke="black" class="smile" />
+
+    <!-- Animation for eyes (to blink) -->
+    <animate 
+      href="#leftEye" attributeName="r" from="10" to="2" dur="0.5s" begin="3s" repeatCount="indefinite" />
+    <animate 
+      href="#rightEye" attributeName="r" from="10" to="2" dur="0.5s" begin="3s" repeatCount="indefinite" />
+  </svg>
+
+</body>
+</html>
