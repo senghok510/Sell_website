@@ -1,45 +1,286 @@
 <!DOCTYPE html>
-<html lang="km">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>គេហទំព័េ</title>
-  <style>
-    /* Change face color on hover */
-    .face:hover {
-      fill: lightblue;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>Product Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-    /* Style for the smile */
-    .smile {
-      stroke-width: 3;
-      stroke-linecap: round;
-    }
-  </style>
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        header nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        header nav a:hover {
+            color: #4CAF50;
+        }
+
+        header .search-field {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            display: none;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        header .search-field input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 200px;
+        }
+
+        header .search-field button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        header .search-icon {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        header .language-switch select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .product .price {
+            font-size: 1.2em;
+            color: #e60023;
+        }
+
+        .product .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .product .discount {
+            color: #fff;
+            background: #e60023;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            position: absolute;
+            margin: 10px;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        #description {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1000;
+            max-width: 600px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        #description button {
+            background: #e60023;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+    <script>
+        function toggleSearch() {
+            const searchField = document.querySelector('.search-field');
+            if (searchField.style.display === 'flex') {
+                searchField.style.display = 'none';
+            } else {
+                searchField.style.display = 'flex';
+            }
+        }
+    </script>
 </head>
 <body>
-  <h1>SVG Smiley Face</h1>
+    <header>
+        <div>
+            <img src="https://via.placeholder.com/150x50" alt="Website Logo">
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="language-switch">
+            <select>
+                <option value="en">EN</option>
+                <option value="kh">KH</option>
+            </select>
+        </div>
+        <i class="fas fa-search search-icon" onclick="toggleSearch()"></i>
+        <div class="search-field">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    </header>
 
-  <!-- SVG Graphic -->
-  <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <!-- Face (Circle) -->
-    <circle class="face" cx="100" cy="100" r="80" fill="yellow" stroke="black" stroke-width="4" />
-    
-    <!-- Left Eye -->
-    <circle cx="70" cy="80" r="10" fill="black" />
-    
-    <!-- Right Eye -->
-    <circle cx="130" cy="80" r="10" fill="black" />
-    
-    <!-- Smile -->
-    <path d="M60 120 Q100 160 140 120" fill="none" stroke="black" class="smile" />
+    <div class="product-container">
+        <div class="product" onclick="showDescription('Stainless Steel Broom', document.getElementById('broom-details').innerHTML)">
+            <div class="discount">-40%</div>
+            <img src="https://via.placeholder.com/150" alt="Stainless Steel Broom">
+            <p>Stainless Steel Broom</p>
+            <p><span class="old-price">$5</span> <span class="price">$3</span></p>
+        </div>
 
-    <!-- Animation for eyes (to blink) -->
-    <animate 
-      href="#leftEye" attributeName="r" from="10" to="2" dur="0.5s" begin="3s" repeatCount="indefinite" />
-    <animate 
-      href="#rightEye" attributeName="r" from="10" to="2" dur="0.5s" begin="3s" repeatCount="indefinite" />
-  </svg>
+        <div class="product" onclick="showDescription('Food Warmer', 'An efficient food warmer with a modern design.')">
+            <div class="discount">-8%</div>
+            <img src="https://via.placeholder.com/150" alt="Food Warmer">
+            <p>Food Warmer</p>
+            <p><span class="old-price">$60</span> <span class="price">$55</span></p>
+        </div>
 
+        <div class="product" onclick="showDescription('Bathroom Shelf', 'Stylish and space-saving bathroom shelf.')">
+            <div class="discount">-16%</div>
+            <img src="https://via.placeholder.com/150" alt="Bathroom Shelf">
+            <p>Bathroom Shelf</p>
+            <p><span class="old-price">$25</span> <span class="price">$21</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Electric Grill', 'Compact electric grill for quick cooking.')">
+            <div class="discount">-25%</div>
+            <img src="https://via.placeholder.com/150" alt="Electric Grill">
+            <p>Electric Grill</p>
+            <p><span class="old-price">$20</span> <span class="price">$15</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Toilet Shelf', 'Modern toilet shelf with ample storage space.')">
+            <div class="discount">-13%</div>
+            <img src="https://via.placeholder.com/150" alt="Toilet Shelf">
+            <p>Toilet Shelf</p>
+            <p><span class="old-price">$30</span> <span class="price">$26</span></p>
+        </div>
+    </div>
+
+    <div id="overlay" onclick="closeDescription()"></div>
+    <div id="description">
+        <h2 id="product-name"></h2>
+        <div id="product-details"></div>
+        <button onclick="closeDescription()">Close</button>
+    </div>
+
+    <div id="broom-details" style="display: none;">
+        <strong>Features</strong>
+        <ul>
+            <li>Great quality and value</li>
+            <li>Stainless steel finish</li>
+            <li>Ideal for sweeping the floors at home</li>
+        </ul>
+        <strong>Information</strong>
+        <p>Get your floors spotless with this Stainless Steel Broom. With its simplistic design and contemporary stainless steel finish, this durable broom will make sweeping your floors a breeze. This sleek broom looks great and is easy to store.</p>
+        <strong>Specification</strong>
+        <ul>
+            <li>Height: 120cm</li>
+            <li>Width: 30cm</li>
+            <li>Depth: 7cm</li>
+            <li>Weight: 1.8kg</li>
+            <li>The Range Marketplace: No</li>
+        </ul>
+    </div>
+
+    <script>
+        function showDescription(name, details) {
+            document.getElementById('product-name').innerText = name;
+            document.getElementById('product-details').innerHTML = details;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('description').style.display = 'block';
+        }
+
+        function closeDescription() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('description').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

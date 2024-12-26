@@ -1,22 +1,146 @@
 <!DOCTYPE html>
-<html lang ="en">
-    <head>
-        <meta charset = "UTF-8">
-        <meta name = "viewport" content = "width = device-width, initial-scale=1.0">
-        <title>
-            My website!
-        </title>
-    </head>
-    <body>
-        <h1> Hello! </h1>
-        <h2> I am Seng Hok </h2>
-        <h3> I am a student at Ecole Polytechnique</h3>
-        <p1> I am very happy to learn HTML. <br>
-         I hope I can build a page for my brother here. <br>I am very excited 
-        </p1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href = "./style.css" >
+    <script>
+        function toggleSearch() {
+            const searchField = document.querySelector('.search-field');
+            if (searchField.style.display === 'flex') {
+                searchField.style.display = 'none';
+            } else {
+                searchField.style.display = 'flex';
+            }
+        }
+    </script>
+  
+</head>
 
-    </body>
+<body>
+    <header>
+        <div>
+            <img id = "logo" src="./Assets/images/logo-removebg-preview.png" alt="Website Logo">
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="language-switch">
+            <select>
+                <option value="en">EN</option>
+                <option value="kh">KH</option>
+            </select>
+        </div>
+        <i class="fas fa-search search-icon" onclick="toggleSearch()"></i>
+        <div class="search-field">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        
+        
+       
+    </header>
+    <div class="product-container">
+        <div class="product" onclick="showDescription('Cooking pot', document.getElementById('broom-details').innerHTML)">
+            <div class="discount">-40%</div>
+            <img src="./Assets/images/Cooking_pot.jpeg" alt="Cooking_pot">
+            <p>Stainless Steel Broom</p>
+            <p><span class="old-price">$5</span> <span class="price">$3</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Food Warmer', document.getElementById('pro2-details').innerHTML)">
+            <div class="discount">-8%</div>
+            <img src="./Assets/images/Kettle.jpeg" alt="Kettle">
+            <p>Food Warmer</p>
+            <p><span class="old-price">$60</span> <span class="price">$55</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Bathroom Shelf', 'Stylish and space-saving bathroom shelf.')">
+            <div class="discount">-16%</div>
+            <img src="./Assets/images/Multi-Layer Lunch Box Stainless.jpeg" alt="Multi-layer-box">
+            <p>Bathroom Shelf</p>
+            <p><span class="old-price">$25</span> <span class="price">$21</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Electric Grill', 'Compact electric grill for quick cooking.')">
+            <div class="discount">-25%</div>
+            <img src="/Assets/images/Self.jpeg" alt="Self">
+            <p>Electric Grill</p>
+            <p><span class="old-price">$20</span> <span class="price">$15</span></p>
+        </div>
+
+        <div class="product" onclick="showDescription('Toilet Shelf', 'Modern toilet shelf with ample storage space.')">
+            <div class="discount">-13%</div>
+            <img src="./Assets/images/Toilet_clean.jpeg" alt="Toilet-Clean">
+            <p>Toilet Shelf</p>
+            <p><span class="old-price">$30</span> <span class="price">$26</span></p>
+        </div>
+    </div>
+
+    <div id="overlay" onclick="closeDescription()"></div>
+    <div id="description">
+        <h2 id="product-name"></h2>
+        <p id="product-details"></p>
+        <button onclick="closeDescription()">Close</button>
+    </div>
+    
+    <div id="broom-details" style="display: none;">
+        <strong>Features</strong>
+        <ul>
+            <li>Great quality and value</li>
+            <li>Stainless steel finish</li>
+            <li>Ideal for sweeping the floors at home</li>
+        </ul>
+        <strong>Information</strong>
+        <p>Get your floors spotless with this Stainless Steel Broom. With its simplistic design and contemporary stainless steel finish, this durable broom will make sweeping your floors a breeze. This sleek broom looks great and is easy to store.</p>
+        <strong>Specification</strong>
+        <ul>
+            <li>Height: 120cm</li>
+            <li>Width: 30cm</li>
+            <li>Depth: 7cm</li>
+            <li>Weight: 1.8kg</li>
+            <li>The Range Marketplace: No</li>
+        </ul>
+    </div>
+    <! --second product>
+
+    <div id="pro2-details" style="display: none;">
+        <strong>Features</strong>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <strong>Information</strong>
+        <p></p>
+        <strong>Specification</strong>
+        <ul>
+            <li>Height: </li>
+            <li>Width: </li>
+            <li>Depth: </li>
+            <li>Weight: </li>
+        </ul>
+    </div>
 
 
+    <script>
+        function showDescription(name, details) {
+            document.getElementById('product-name').innerText = name;
+            document.getElementById('product-details').innerHTML = details;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('description').style.display = 'block';
+        }
 
+        function closeDescription() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('description').style.display = 'none';
+        }
+    </script>
+</body>
 </html>
