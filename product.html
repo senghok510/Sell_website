@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        header nav a:hover {
+            color: #4CAF50;
+        }
+
+        #product-detail {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        #product-detail h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        #product-detail img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #product-detail p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        #product-detail p strong {
+            color: #333;
+        }
+
+        #product-detail ul {
+            list-style-type: disc;
+            padding-left: 40px;
+            color: #555;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        #product-detail .section-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #fff;
+            color: #777;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img id="logo" src="./Assets/images/logo-removebg-preview.png" alt="Website Logo">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="language-switch">
+            <select>
+                <option value="en">EN</option>
+                <option value="kh">KH</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div id="product-detail" class="product-container">
+            <div id="product-description">
+                <!-- Product details will be dynamically loaded -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Parse query parameters from the URL
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+    
+        // Extract product information
+        const name = urlParams.get('name');
+        const discount = urlParams.get('discount');
+        const oldPrice = urlParams.get('oldPrice');
+        const price = urlParams.get('price');
+        const img = urlParams.get('img');
+        const details = urlParams.get('details');
+        const features = urlParams.get('features') ? urlParams.get('features').split(';') : [];
+        const utilities = urlParams.get('utilities') ? urlParams.get('utilities').split(';') : [];
+    
+        // Generate dynamic product description
+        const productDescription = `
+            <h1>${name}</h1>
+            <div>
+                <img src="${img}" alt="${name}">
+                <p>${details}</p>
+                <p><strong>Discount:</strong> ${discount}</p>
+                <p><strong>Old Price:</strong> ${oldPrice}</p>
+                <p class="price">Price: ${price}</p>
+    
+                <div class="section-title">Features</div>
+                <ul>
+                    ${features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+    
+                <div class="section-title">Utility</div>
+                <ul>
+                    ${utilities.map(utility => `<li>${utility}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    
+        // Inject the description into the page
+        document.getElementById('product-description').innerHTML = productDescription;
+    </script>
+    
+</body>
+</html>

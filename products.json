@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Cooking Pot",
+        "discount": "-40%",
+        "oldPrice": "$5",
+        "price": "$3",
+        "img": "./Assets/images/Cooking_pot.jpeg",
+        "details": "Great quality cooking pot.",
+        "features": [
+            "High durability and build quality",
+            "Made from eco-friendly materials",
+            "Ergonomic design for daily use",
+            "Easy to clean and maintain"
+        ],
+        "utilities": [
+            "Perfect for cooking family-sized meals",
+            "Suitable for all types of stoves",
+            "Energy-efficient and time-saving",
+            "Ideal for both home and commercial use"
+        ]
+    },
+    {
+        "name": "Food Warmer",
+        "discount": "-8%",
+        "oldPrice": "$60",
+        "price": "$55",
+        "img": "./Assets/images/Kettle.jpeg",
+        "details": "Efficient and durable food warmer.",
+        "features": [
+            "Compact and portable design",
+            "Durable stainless steel construction",
+            "Keeps food warm for hours",
+            "Stylish and modern appearance"
+        ],
+        "utilities": [
+            "Ideal for outdoor picnics",
+            "Perfect for keeping dishes warm at events",
+            "Compatible with a variety of foods",
+            "Great for both home and commercial use"
+        ]
+    }
+]

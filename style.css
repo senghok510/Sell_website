@@ -4,10 +4,15 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
-
-#logo{
-    height:100px
+.product-container a {
+    text-decoration: none;
+    color: inherit; /* Inherits the text color of the parent */
 }
+
+.product-container a:hover {
+    text-decoration: none; /* Ensures no underline on hover */
+}
+
 
 header {
     background-color: #fff;
@@ -18,10 +23,12 @@ header {
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+    flex-wrap: wrap;
 }
 
 header img {
     height: 50px;
+    margin-right: 20px;
 }
 
 header nav {
@@ -29,6 +36,7 @@ header nav {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 header nav a {
@@ -36,6 +44,7 @@ header nav a {
     color: #333;
     font-weight: bold;
     font-size: 1em;
+    white-space: nowrap;
 }
 
 header nav a:hover {
@@ -77,6 +86,24 @@ header .language-switch select {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    header nav {
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    header .search-icon {
+        margin-top: 10px;
+    }
 }
 
 .product-container {
@@ -166,4 +193,3 @@ header .language-switch select {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
-
